@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AllUsersInfo, CurrentUser, setUser } from "../../features/loginInfoSlice";
+import { AllUsersInfo, CurrentUser, setUser } from "../features/loginInfoSlice";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -11,14 +11,15 @@ export default function SignInForm({ handleBtnClicked }) {
   const allUserInfo = useSelector(AllUsersInfo);
   const isLogged = Boolean(useSelector(CurrentUser).email);
 
+  const isValid = (email, password) => {
+    return allUserInfo.some(
+      (user) => user.email === email && user.password === password
+    );
+  };
 
-const isValid = (email, password) => {
-    return allUserInfo.some((user) => user.email === email && user.password === password);
-};
-
-const isExist = (email) => {
+  const isExist = (email) => {
     return allUserInfo.some((user) => user.email === email);
-};
+  };
 
   const validate = (values) => {
     const errors = {};
@@ -48,26 +49,28 @@ const isExist = (email) => {
     onSubmit: (values, { resetForm }) => {
       if (isValid(values.email, values.password)) {
         Swal.fire({
-            html: '<span class="text-green-700 font-fredoka font-medium" >Signed In Successfully</span>',
-            icon: "success",
-            showConfirmButton: false,
-            timer:1500
-          });
+          html: '<span class="text-green-700 font-fredoka font-medium" >Signed In Successfully</span>',
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         dispatch(setUser(values.email));
         navigate("/");
         resetForm();
       } else {
-        if (isExist(values.email)) Swal.fire({
+        if (isExist(values.email))
+          Swal.fire({
             html: '<span class="text-red-600 font-fredoka font-medium" >Password Is Wrong ....</span>',
             icon: "error",
             showConfirmButton: false,
-            timer:2000
+            timer: 2000,
           });
-        else Swal.fire({
+        else
+          Swal.fire({
             html: '<span class="text-red-600 font-fredoka font-medium" >Account Not Found</span>',
             icon: "error",
             showConfirmButton: false,
-            timer:2000
+            timer: 2000,
           });
         resetForm();
       }
@@ -76,7 +79,6 @@ const isExist = (email) => {
 
   return (
     <div className="flex justify-center items-center mt-40">
-
       {!isLogged && (
         <form
           onSubmit={formik.handleSubmit}

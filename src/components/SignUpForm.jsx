@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { addUser, AllUsersInfo } from "../../features/loginInfoSlice";
+import { addUser, AllUsersInfo } from "../features/loginInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 //* npm install formik --save

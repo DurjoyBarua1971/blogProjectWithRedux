@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addReaction, AllPostsInfo } from "../../features/postInfoSlice";
-import { CurrentUser } from "../../features/loginInfoSlice";
+import { addReaction, AllPostsInfo } from "../features/postInfoSlice";
+import { CurrentUser } from "../features/loginInfoSlice";
 
 export default function PostHub() {
   const posts = useSelector(AllPostsInfo);
@@ -9,7 +9,10 @@ export default function PostHub() {
   const dispath = useDispatch();
 
   const handleReactionBtn = (username, postId, emojiId) => {
-    if(user.email) dispath(addReaction({ username, postId, emojiId, currentUser: user.username }));
+    if (user.email)
+      dispath(
+        addReaction({ username, postId, emojiId, currentUser: user.username })
+      );
   };
 
   return (

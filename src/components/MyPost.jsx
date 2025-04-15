@@ -2,9 +2,9 @@ import React from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { CurrentUser } from "../../features/loginInfoSlice";
+import { CurrentUser } from "../features/loginInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../features/postInfoSlice";
+import { addPost } from "../features/postInfoSlice";
 
 //* npm install formik --save
 //* npm install yup --save

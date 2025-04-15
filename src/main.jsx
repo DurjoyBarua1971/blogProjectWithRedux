@@ -10,7 +10,7 @@ import {
 import Layout from "./Layout";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import { Login, PostHub } from "./components";
+import { Login} from "./components";
 import Home from "./Home";
 import MyPost from "./components/MyPost";
 
